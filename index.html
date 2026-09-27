@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Naciri Style | متجر مغربي</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f8f6f2;color:#161616;font-family:Arial,Tahoma,sans-serif}
+a{text-decoration:none;color:inherit}button,input,select{font:inherit}
+.wrap{width:min(1160px,92%);margin:auto}.top{background:#111;color:#fff;text-align:center;padding:8px;font-size:13px}
+header{position:sticky;top:0;z-index:20;background:#f8f6f2ee;backdrop-filter:blur(12px);border-bottom:1px solid #e5e0d9}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{font-size:22px;font-weight:900;letter-spacing:1.5px}
+.links{display:flex;gap:25px;font-size:14px}.links a:hover{text-decoration:underline}
+.lang{border:1px solid #111;background:transparent;border-radius:25px;padding:8px 13px;cursor:pointer}
+.cartBtn{border:0;background:#111;color:#fff;border-radius:30px;padding:11px 17px;cursor:pointer}
+.hero{padding:55px 0 35px}.heroGrid{display:grid;grid-template-columns:1.05fr .95fr;gap:35px;align-items:center}
+.badge{display:inline-block;border:1px solid #ddd5ca;border-radius:30px;padding:8px 14px;color:#666;font-size:13px}
+h1{font-size:clamp(43px,7vw,78px);line-height:1.02;margin:20px 0}.lead{font-size:18px;color:#666;max-width:650px}
+.btn{display:inline-block;border:1px solid #111;border-radius:10px;padding:13px 20px;cursor:pointer}.black{background:#111;color:#fff}
+.heroBox{height:390px;border-radius:28px;background:linear-gradient(145deg,#ded3c5,#c8b9a8);display:flex;align-items:flex-end;padding:25px}
+.heroBox div{background:#fff;border-radius:12px;padding:12px 16px;font-weight:bold}
+section{padding:55px 0}.title{display:flex;justify-content:space-between;align-items:end;margin-bottom:24px}.title h2{font-size:34px;margin:0}.muted{color:#777}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:#fff;border:1px solid #e7e1d9;border-radius:18px;overflow:hidden}
+.pic{height:290px;background:linear-gradient(145deg,#eee9e3,#d5c8ba);display:flex;align-items:center;justify-content:center;font-size:70px}
+.body{padding:18px}.body h3{margin:0 0 4px;font-size:19px}.body p{margin:0 0 12px;color:#777;font-size:14px}
+.price{font-weight:900;font-size:20px}.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.add{border:0;background:#111;color:#fff;border-radius:9px;padding:10px 13px;cursor:pointer}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.options select{width:100%;padding:9px;border:1px solid #ddd;border-radius:8px;background:#fff}
+.info{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.infoBox{background:#fff;border:1px solid #e7e1d9;border-radius:16px;padding:22px}.infoBox b{display:block;margin-bottom:6px}
+.about{background:#171717;color:#fff}.about .muted{color:#ccc}
+footer{border-top:1px solid #e5e0d9;padding:25px 0;color:#777;font-size:13px}
+.overlay{display:none;position:fixed;inset:0;background:#0007;z-index:40}.overlay.on{display:block}
+.drawer{position:fixed;z-index:50;top:0;left:0;height:100%;width:min(440px,94%);background:#fff;padding:22px;overflow:auto;transform:translateX(-110%);transition:.25s}.drawer.on{transform:none}
+.drawerHead{display:flex;justify-content:space-between;align-items:center}.x{border:0;background:#eee;border-radius:50%;width:36px;height:36px;cursor:pointer}
+.item{padding:15px 0;border-bottom:1px solid #eee}.itemTop{display:flex;justify-content:space-between;gap:10px}.small{font-size:13px;color:#777}.qty{display:flex;align-items:center;gap:8px;margin-top:8px}.qty button{border:1px solid #ddd;background:#fff;border-radius:6px;width:29px;height:29px;cursor:pointer}
+.total{display:flex;justify-content:space-between;font-size:20px;font-weight:bold;padding:18px 0}
+.form{border-top:1px solid #eee;padding-top:18px}.form label{display:block;font-size:13px;margin:9px 0 4px}.form input,.form select{width:100%;padding:11px;border:1px solid #ddd;border-radius:8px}
+.full{width:100%;margin-top:13px}.note{font-size:12px;color:#777;margin-top:9px;line-height:1.6}
+@media(max-width:820px){.heroGrid{grid-template-columns:1fr}.links{display:none}.products{grid-template-columns:1fr 1fr}.info{grid-template-columns:1fr}.heroBox{height:260px}}
+@media(max-width:540px){.products{grid-template-columns:1fr}.hero{padding-top:35px}}
+</style>
+</head>
+<body>
+<div class="top" data-i18n="shipping">🚚 التوصيل لجميع أنحاء المغرب · 💵 الدفع عند الاستلام</div>
+
+<header><div class="wrap nav">
+<a class="brand" href="#">NACIRI STYLE</a>
+<nav class="links">
+<a href="#home" data-i18n="home">الرئيسية</a>
+<a href="#products" data-i18n="productsNav">المنتجات</a>
+<a href="#why" data-i18n="whyNav">علاش حنا</a>
+</nav>
+<div style="display:flex;gap:8px;align-items:center">
+<button class="lang" id="langBtn" onclick="toggleLang()">English</button>
+<button class="cartBtn" onclick="openCart()">🛒 <span data-i18n="cart">السلة</span> (<span id="count">0</span>)</button>
+</div>
+</div></header>
+
+<main>
+<section class="hero" id="home"><div class="wrap heroGrid">
+<div><span class="badge">NACIRI STYLE · MOROCCO 🇲🇦</span>
+<h1 data-i18n="heroTitle">ستايلك هو<br>هويتك.</h1>
+<p class="lead" data-i18n="heroText">أزياء عصرية بلمسة بسيطة، مع التوصيل لجميع أنحاء المغرب والدفع عند الاستلام.</p>
+<p><a class="btn black" href="#products" data-i18n="shopNow">شوف المنتجات</a></p></div>
+<div class="heroBox"><div data-i18n="heroBadge">ستايل مغربي بلمسة عصرية 🇲🇦</div></div>
+</div></section>
+
+<section id="products"><div class="wrap">
+<div class="title"><div><h2 data-i18n="productsTitle">المنتجات</h2><div class="muted" data-i18n="productsSub">اختار المقاس واللون وزيد القطعة للسلة.</div></div></div>
+<div class="products">
+
+<article class="card"><div class="pic">👕</div><div class="body">
+<h3>Oversize T-Shirt</h3><p data-i18n="tshirtDesc">تيشورت واسع ومريح</p>
+<div class="options"><select id="s1"><option>S</option><option>M</option><option>L</option><option>XL</option></select><select id="c1" class="color"><option>أسود</option><option>أبيض</option><option>بيج</option></select></div>
+<div class="row"><span class="price">299 DH</span><button class="add" onclick="add('Oversize T-Shirt',299,'s1','c1')" data-i18n="add">زيد للسلة</button></div>
+</div></article>
+
+<article class="card"><div class="pic">🧥</div><div class="body">
+<h3>Basic Hoodie</h3><p data-i18n="hoodieDesc">هودي بسيط للوك يومي</p>
+<div class="options"><select id="s2"><option>S</option><option>M</option><option>L</option><option>XL</option></select><select id="c2" class="color"><option>أسود</option><option>رمادي</option><option>أبيض</option></select></div>
+<div class="row"><span class="price">179 DH</span><button class="add" onclick="add('Basic Hoodie',179,'s2','c2')" data-i18n="add">زيد للسلة</button></div>
+</div></article>
+
+<article class="card"><div class="pic">👖</div><div class="body">
+<h3>Street Pants</h3><p data-i18n="pantsDesc">بنطلون ستريت مريح</p>
+<div class="options"><select id="s3"><option>S</option><option>M</option><option>L</option><option>XL</option></select><select id="c3" class="color"><option>أسود</option><option>كحلي</option><option>بيج</option></select></div>
+<div class="row"><span class="price">329 DH</span><button class="add" onclick="add('Street Pants',329,'s3','c3')" data-i18n="add">زيد للسلة</button></div>
+</div></article>
+
+</div></div></section>
+
+<section id="why"><div class="wrap"><div class="title"><div><h2 data-i18n="whyTitle">علاش Naciri Style؟</h2><div class="muted" data-i18n="whySub">كلشي واضح وبسيط.</div></div></div>
+<div class="info">
+<div class="infoBox"><b data-i18n="deliveryTitle">🚚 التوصيل</b><span class="muted" data-i18n="deliveryText">لجميع أنحاء المغرب.</span></div>
+<div class="infoBox"><b data-i18n="paymentTitle">💵 الدفع</b><span class="muted" data-i18n="paymentText">الدفع عند الاستلام.</span></div>
+<div class="infoBox"><b data-i18n="orderTitle">📱 الطلب</b><span class="muted" data-i18n="orderText">الطلب عبر WhatsApp بعد إضافة معلوماتك.</span></div>
+</div></div></section>
+
+<section class="about"><div class="wrap"><h2 data-i18n="aboutTitle">علينا</h2><p class="muted" data-i18n="aboutText">Naciri Style هو براند مغربي كيركز على الأزياء العصرية والستايل البسيط.</p></div></section>
+</main>
+<footer><div class="wrap" data-i18n="footer">© 2026 Naciri Style — جميع الحقوق محفوظة.</div></footer>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<aside class="drawer" id="drawer">
+<div class="drawerHead"><h2 data-i18n="cartTitle">السلة</h2><button class="x" onclick="closeCart()">×</button></div>
+<div id="items"></div>
+<div class="total"><span data-i18n="total">المجموع</span><span id="total">0 DH</span></div>
+<div class="form"><h3 data-i18n="customerInfo">معلومات التوصيل</h3>
+<label data-i18n="nameLabel">الاسم الكامل</label><input id="name" data-placeholder-ar="مثال: محمد العلوي" data-placeholder-en="Example: Mohamed Alaoui" placeholder="مثال: محمد العلوي">
+<label data-i18n="phoneLabel">رقم الهاتف</label><input id="phone" data-placeholder-ar="06XXXXXXXX" data-placeholder-en="06XXXXXXXX" placeholder="06XXXXXXXX" type="tel">
+<label data-i18n="cityLabel">المدينة</label><select id="city"><option value="" data-i18n="cityChoose">اختار المدينة</option><option>Casablanca</option><option>Rabat</option><option>Marrakech</option><option>Agadir</option><option>Tanger</option><option>Fès</option><option>Meknès</option><option>Oujda</option><option>Tétouan</option><option>Kénitra</option><option>El Jadida</option><option>Safi</option><option>Béni Mellal</option><option>Khouribga</option><option>أخرى</option></select>
+<label data-i18n="addressLabel">العنوان</label><input id="address" data-placeholder-ar="الحي، الشارع، رقم المنزل..." data-placeholder-en="Neighborhood, street, house number..." placeholder="الحي، الشارع، رقم المنزل...">
+<button class="btn black full" onclick="sendWhatsApp()" data-i18n="whatsappBtn">طلب عبر WhatsApp</button>
+<div class="note" data-i18n="note">مهم: خاصك تحط رقم WhatsApp الحقيقي ديال Naciri Style داخل الكود قبل استقبال الطلبات.</div>
+</div></aside>
+
+<script>
+const T={
+ar:{
+shipping:"🚚 التوصيل لجميع أنحاء المغرب · 💵 الدفع عند الاستلام",home:"الرئيسية",productsNav:"المنتجات",whyNav:"علاش حنا",cart:"السلة",
+heroTitle:"ستايلك هو<br>هويتك.",heroText:"أزياء عصرية بلمسة بسيطة، مع التوصيل لجميع أنحاء المغرب والدفع عند الاستلام.",shopNow:"شوف المنتجات",heroBadge:"ستايل مغربي بلمسة عصرية 🇲🇦",
+productsTitle:"المنتجات",productsSub:"اختار المقاس واللون وزيد القطعة للسلة.",tshirtDesc:"تيشورت واسع ومريح",hoodieDesc:"هودي بسيط للوك يومي",pantsDesc:"بنطلون ستريت مريح",add:"زيد للسلة",
+whyTitle:"علاش Naciri Style؟",whySub:"كلشي واضح وبسيط.",deliveryTitle:"🚚 التوصيل",deliveryText:"لجميع أنحاء المغرب.",paymentTitle:"💵 الدفع",paymentText:"الدفع عند الاستلام.",orderTitle:"📱 الطلب",orderText:"الطلب عبر WhatsApp بعد إضافة معلوماتك.",
+aboutTitle:"علينا",aboutText:"Naciri Style هو براند مغربي كيركز على الأزياء العصرية والستايل البسيط.",footer:"© 2026 Naciri Style — جميع الحقوق محفوظة.",
+cartTitle:"السلة",total:"المجموع",customerInfo:"معلومات التوصيل",nameLabel:"الاسم الكامل",phoneLabel:"رقم الهاتف",cityLabel:"المدينة",cityChoose:"اختار المدينة",addressLabel:"العنوان",whatsappBtn:"طلب عبر WhatsApp",note:"مهم: خاصك تحط رقم WhatsApp الحقيقي ديال Naciri Style داخل الكود قبل استقبال الطلبات.",
+empty:"السلة خاوية.",addFirst:"زيد شي منتج للسلة الأول.",fill:"عافاك عمر جميع معلومات التوصيل.",number:"الموقع خدام، ولكن خاصنا نحطو رقم WhatsApp الحقيقي ديال Naciri Style قبل استقبال الطلبات."
+},
+en:{
+shipping:"🚚 Delivery across Morocco · 💵 Cash on delivery",home:"Home",productsNav:"Products",whyNav:"Why us",cart:"Cart",
+heroTitle:"Your style is<br>your identity.",heroText:"Modern fashion with a clean touch, delivered across Morocco with cash on delivery.",shopNow:"Shop products",heroBadge:"Moroccan style with a modern touch 🇲🇦",
+productsTitle:"Products",productsSub:"Choose the size and color, then add the item to your cart.",tshirtDesc:"Comfortable oversized T-shirt",hoodieDesc:"Simple everyday hoodie",pantsDesc:"Comfortable street pants",add:"Add to cart",
+whyTitle:"Why Naciri Style?",whySub:"Simple and clear.",deliveryTitle:"🚚 Delivery",deliveryText:"Across Morocco.",paymentTitle:"💵 Payment",paymentText:"Cash on delivery.",orderTitle:"📱 Ordering",orderText:"Order via WhatsApp after adding your details.",
+aboutTitle:"About us",aboutText:"Naciri Style is a Moroccan brand focused on modern fashion and clean everyday style.",footer:"© 2026 Naciri Style — All rights reserved.",
+cartTitle:"Cart",total:"Total",customerInfo:"Delivery information",nameLabel:"Full name",phoneLabel:"Phone number",cityLabel:"City",cityChoose:"Choose your city",addressLabel:"Address",whatsappBtn:"Order via WhatsApp",note:"Important: add the real Naciri Style WhatsApp number in the code before accepting orders.",
+empty:"Your cart is empty.",addFirst:"Add a product to your cart first.",fill:"Please fill in all delivery information.",number:"The website is ready, but the real Naciri Style WhatsApp number must be added before accepting orders."
+}};
+let lang=localStorage.getItem("ns_lang")||"ar";
+const WHATSAPP_NUMBER="212600000000";
+function applyLang(){
+ document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+ document.querySelectorAll("[data-i18n]").forEach(e=>e.innerHTML=T[lang][e.dataset.i18n]||e.innerHTML);
+ document.getElementById("langBtn").textContent=lang==="ar"?"English":"العربية";
+ document.querySelectorAll("[data-placeholder-ar]").forEach(e=>e.placeholder=lang==="ar"?e.dataset.placeholderAr:e.dataset.placeholderEn);
+ const colorSets=lang==="ar"?[
+ ["أسود","أبيض","بيج"],["أسود","رمادي","أبيض"],["أسود","كحلي","بيج"]
+ ]:[
+ ["Black","White","Beige"],["Black","Gray","White"],["Black","Navy","Beige"]
+ ];
+ ["c1","c2","c3"].forEach((id,i)=>{let s=document.getElementById(id),v=s.selectedIndex;s.innerHTML=colorSets[i].map(x=>`<option>${x}</option>`).join("");if(v>=0&&v<s.options.length)s.selectedIndex=v});
+ render();
+}
+function toggleLang(){lang=lang==="ar"?"en":"ar";localStorage.setItem("ns_lang",lang);applyLang()}
+let cart=JSON.parse(localStorage.getItem("ns_cart")||"[]");
+function save(){localStorage.setItem("ns_cart",JSON.stringify(cart));render()}
+function add(name,price,sizeId,colorId){let size=document.getElementById(sizeId).value,color=document.getElementById(colorId).value;let x=cart.find(i=>i.name==name&&i.size==size&&i.color==color);if(x)x.qty++;else cart.push({name,price,size,color,qty:1});save();openCart()}
+function change(i,d){cart[i].qty+=d;if(cart[i].qty<1)cart.splice(i,1);save()}
+function render(){let n=cart.reduce((a,x)=>a+x.qty,0),t=cart.reduce((a,x)=>a+x.price*x.qty,0);document.getElementById("count").textContent=n;document.getElementById("total").textContent=t+" DH";document.getElementById("items").innerHTML=cart.length?cart.map((x,i)=>`<div class="item"><div class="itemTop"><div><b>${x.name}</b><div class="small">${x.size} · ${x.color} · ${x.price} DH</div><div class="qty"><button onclick="change(${i},-1)">−</button><span>${x.qty}</span><button onclick="change(${i},1)">+</button></div></div><b>${x.price*x.qty} DH</b></div></div>`).join(""):`<p class="muted">${T[lang].empty}</p>`}
+function openCart(){document.getElementById("drawer").classList.add("on");document.getElementById("overlay").classList.add("on")}
+function closeCart(){document.getElementById("drawer").classList.remove("on");document.getElementById("overlay").classList.remove("on")}
+function sendWhatsApp(){
+ if(!cart.length){alert(T[lang].addFirst);return}
+ let name=document.getElementById("name").value.trim(),phone=document.getElementById("phone").value.trim(),city=document.getElementById("city").value,address=document.getElementById("address").value.trim();
+ if(!name||!phone||!city||!address){alert(T[lang].fill);return}
+ if(WHATSAPP_NUMBER==="212600000000"){alert(T[lang].number);return}
+ let total=cart.reduce((a,x)=>a+x.price*x.qty,0),lines=cart.map(x=>`- ${x.name} | ${x.size} | ${x.color} | x${x.qty} | ${x.price*x.qty} DH`).join("\n");
+ let msg=`${lang==="ar"?"السلام عليكم، بغيت ندير طلب من Naciri Style 🇲🇦":"Hello, I would like to place an order from Naciri Style 🇲🇦"}\n\n${lines}\n\n${lang==="ar"?"المجموع":"Total"}: ${total} DH\n${lang==="ar"?"الاسم":"Name"}: ${name}\n${lang==="ar"?"الهاتف":"Phone"}: ${phone}\n${lang==="ar"?"المدينة":"City"}: ${city}\n${lang==="ar"?"العنوان":"Address"}: ${address}\n${lang==="ar"?"الدفع: عند الاستلام":"Payment: Cash on delivery"}`;
+ window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,"_blank");
+}
+applyLang();
+</script>
+</body></html>
