@@ -157,7 +157,33 @@ function applyLang(){
  render();
 }
 function toggleLang(){lang=lang==="ar"?"en":"ar";localStorage.setItem("ns_lang",lang);applyLang()}
-let cart=JSON.parse(localStorage.getItem("ns_cart")||"[]");
+let cart=JSON.parse(localStorage.getItem("ns_cart")||"[]");function searchProducts(){
+  const input = document.getElementById("searchInput");
+  const cards = document.querySelectorAll(".products .card");
+
+  if(!input) return;
+
+  const query = input.value.trim().toLowerCase();
+
+  cards.forEach(card => {
+    const text = card.innerText.toLowerCase();
+
+    if(query === "" || text.includes(query)){
+      card.style.display = "";
+    }else{
+      card.style.display = "none";
+    }
+  });
+
+  const firstVisible = [...cards].find(card => card.style.display !== "none");
+
+  if(query && firstVisible){
+    firstVisible.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  }
+}
 function save(){localStorage.setItem("ns_cart",JSON.stringify(cart));render()}
 function add(name,price,sizeId,colorId){let size=document.getElementById(sizeId).value,color=document.getElementById(colorId).value;let x=cart.find(i=>i.name==name&&i.size==size&&i.color==color);if(x)x.qty++;else cart.push({name,price,size,color,qty:1});save();openCart()}
 function change(i,d){cart[i].qty+=d;if(cart[i].qty<1)cart.splice(i,1);save()}
